@@ -111,7 +111,7 @@ TailwindMerge::merge(['h-10', 'h-20'], 'h-30', ['h-40']); // h-40
 
 For in depth documentation and general PHP examples, take a look at the [gehrisandro/tailwind-merge-php](https://github.com/gehrisandro/tailwind-merge-php) repository.
 
-### Use in Laravel Blade
+### Use in Laravel Blade Components
 
 Create your Blade components as you normally would, but instead of specifying the `class` attribute directly, use the `mergeClasses` method:
 
