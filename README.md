@@ -15,9 +15,10 @@ Essentially, a Laravel port of [tailwind-merge](https://github.com/dcastil/tailw
 
 Supports Tailwind v3.0 up to v3.3.
 
-> **Attention:** This package is still in development and not ready for production use. \
-> At the moment only this README is publicly available. The package will be released soon.
-> Star this repository or follow me on [Twitter](https://twitter.com/gehrisandro) to get notified when the package is released.
+If you find this package helpful, please consider sponsoring the maintainer:
+- Sandro Gehri: **[github.com/sponsors/gehrisandro](https://github.com/sponsors/gehrisandro)**
+
+> **Attention:** This package is still in early development.
 
 ## Table of Contents
 - [Get Started](#get-started)
