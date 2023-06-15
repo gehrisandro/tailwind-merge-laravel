@@ -117,7 +117,7 @@ Create your Blade components as you normally would, but instead of specifying th
 
 ```php
 // circle.blade.php
-<div {{ $attributes->mergeClasses('w-10 h-10 rounded-full bg-red-500') }}></div>
+<div {{ $attributes->twMerge('w-10 h-10 rounded-full bg-red-500') }}></div>
 ```
 
 Now you can use your Blade components and pass additional classes to merge:
@@ -139,10 +139,10 @@ This will now render the following HTML:
 The package registers a Blade directive which can be used to merge classes in your Blade views:
 
 ```php
-@mergeClasses('w-10 h-10 rounded-full bg-red-500 bg-blue-500') // w-10 h-10 rounded-full bg-blue-500
+@twMerge('w-10 h-10 rounded-full bg-red-500 bg-blue-500') // w-10 h-10 rounded-full bg-blue-500
 
 // or multiple arguments
-@mergeClasses('w-10 h-10 rounded-full bg-red-500', 'bg-blue-500') // w-10 h-10 rounded-full bg-blue-500
+@twMerge('w-10 h-10 rounded-full bg-red-500', 'bg-blue-500') // w-10 h-10 rounded-full bg-blue-500
 ```
 
 If you want to rename the blade directive, you can do so in the `config/tailwind-merge.php` configuration file:
@@ -150,7 +150,7 @@ If you want to rename the blade directive, you can do so in the `config/tailwind
 ```php
 // config/tailwind-merge.php
 return [
-    'blade_directive' => 'customMergeClasses',
+    'blade_directive' => 'customTwMerge',
 ];
 ```
 
