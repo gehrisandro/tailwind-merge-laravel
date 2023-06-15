@@ -1,5 +1,5 @@
 {
-    "name": "sandrogehri/tailwind-merge-laravel",
+    "name": "gehrisandro/tailwind-merge-laravel",
     "description": "TailwindMerge for Laravel merges multiple Tailwind CSS classes by automatically resolving conflicts between them",
     "keywords": ["laravel", "php", "tailwindcss", "merge", "classes"],
     "license": "MIT",
@@ -13,7 +13,7 @@
         "php": "^8.1.0",
         "guzzlehttp/guzzle": "^7.5.1",
         "laravel/framework": "^9.46.0|^10.9.0",
-        "sandrogehri/tailwind-merge-php": "^0.0.1"
+        "gehrisandro/tailwind-merge-php": "^0.0.1"
     },
     "require-dev": {
         "laravel/pint": "^1.10.2",
