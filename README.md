@@ -34,7 +34,7 @@ If you find this package helpful, please consider sponsoring the maintainer:
 - [Contributing](#contributing)
 
 ## Get Started
-> **Requires [Laravel 9+](https://github.com/laravel/laravel) and [PHP 8.1+](https://php.net/releases/)**
+> **Requires [Laravel 10](https://github.com/laravel/laravel)**
 
 First, install `TailwindMerge for Laravel` via the [Composer](https://getcomposer.org/) package manager:
 
