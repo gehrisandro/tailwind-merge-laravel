@@ -1,0 +1,8 @@
+<?php
+
+uses(
+    \Illuminate\Foundation\Testing\Concerns\InteractsWithContainer::class,
+    \Illuminate\Foundation\Testing\Concerns\InteractsWithViews::class,
+    \Tests\TestCase::class,
+)
+    ->in('Feature');

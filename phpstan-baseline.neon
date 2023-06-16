@@ -1,0 +1,26 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property TailwindMerge\\\\Laravel\\\\ServiceProvider\\:\\:\\$attributes\\.$#"
+			count: 1
+			path: src/ServiceProvider.php
+
+		-
+			message: "#^Cannot call method merge\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/ServiceProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$configuration of method TailwindMerge\\\\Factory\\:\\:withConfiguration\\(\\) expects array\\<string, mixed\\>, mixed given\\.$#"
+			count: 1
+			path: src/ServiceProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of method Illuminate\\\\View\\\\Compilers\\\\BladeCompiler\\:\\:directive\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/ServiceProvider.php
+
+		-
+			message: "#^Cannot call method merge\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/helpers.php
