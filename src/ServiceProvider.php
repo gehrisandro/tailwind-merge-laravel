@@ -6,30 +6,26 @@ namespace TailwindMerge\Laravel;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\ComponentAttributeBag;
 use TailwindMerge\Contracts\TailwindMergeContract;
+use TailwindMerge\TailwindMerge;
 
 /**
  * @internal
  */
-final class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
+class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        $this->app->singleton(TailwindMergeContract::class, static function (): TailwindMerge {
-            return TailwindMerge::factory()
-                ->make();
-        });
+        $this->app->singleton(TailwindMergeContract::class, static fn (): TailwindMerge => TailwindMerge::factory()
+            ->withConfiguration(config('tailwind-merge', []))
+            ->make());
 
         $this->app->alias(TailwindMergeContract::class, 'tailwind-merge');
         $this->app->alias(TailwindMergeContract::class, TailwindMerge::class);
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
@@ -37,12 +33,35 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
                 __DIR__.'/../config/tailwind-merge.php' => config_path('tailwind-merge.php'),
             ]);
         }
+
+        $this->registerBladeDirectives();
+        $this->registerAttributesBagMarco();
+    }
+
+    protected function registerBladeDirectives(): void
+    {
+        $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler): void {
+            $name = config('tailwind-merge.blade_directive', 'twMerge');
+
+            if ($name === null) {
+                return;
+            }
+
+            $bladeCompiler->directive($name, fn (?string $expression) => "<?php echo twMerge($expression); ?>");
+        });
+    }
+
+    protected function registerAttributesBagMarco(): void
+    {
+        ComponentAttributeBag::macro('twMerge', function (...$args): static {
+            $this->attributes['class'] = resolve(TailwindMergeContract::class)->merge($args, ($this->attributes['class'] ?? ''));
+
+            return $this;
+        });
     }
 
     /**
-     * Get the services provided by the provider.
-     *
-     * @return array<int, string>
+     * @return array<class-string<\TailwindMerge\Contracts\TailwindMergeContract>>|string[]
      */
     public function provides(): array
     {

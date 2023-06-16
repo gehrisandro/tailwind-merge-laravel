@@ -1,51 +1,53 @@
 <?php
 
 use Illuminate\Config\Repository;
-use OpenAI\Client;
-use OpenAI\Contracts\ClientContract;
-use OpenAI\Laravel\Exceptions\ApiKeyIsMissing;
-use OpenAI\Laravel\ServiceProvider;
+use TailwindMerge\Contracts\TailwindMergeContract;
+use TailwindMerge\Laravel\ServiceProvider;
+use TailwindMerge\TailwindMerge;
 
-it('binds the client on the container', function () {
+it('binds the tailwind merge on the container', function () {
     $app = app();
 
     $app->bind('config', fn () => new Repository([
-        'openai' => [
-            'api_key' => 'test',
+        'tailwind-merge' => [
         ],
     ]));
 
     (new ServiceProvider($app))->register();
 
-    expect($app->get(Client::class))->toBeInstanceOf(Client::class);
+    expect($app->get(TailwindMerge::class))->toBeInstanceOf(TailwindMerge::class);
 });
 
 it('binds the client on the container as singleton', function () {
     $app = app();
 
     $app->bind('config', fn () => new Repository([
-        'openai' => [
-            'api_key' => 'test',
+        'tailwind-merge' => [
         ],
     ]));
 
     (new ServiceProvider($app))->register();
 
-    $client = $app->get(Client::class);
+    $twMerge = $app->get(TailwindMerge::class);
 
-    expect($app->get(Client::class))->toBe($client);
+    expect($app->get(TailwindMerge::class))->toBe($twMerge);
 });
 
-it('requires an api key', function () {
+it('uses the prefix from the configuration', function () {
     $app = app();
 
-    $app->bind('config', fn () => new Repository([]));
+    $app->bind('config', fn () => new Repository([
+        'tailwind-merge' => [
+            'prefix' => 'tw-',
+        ],
+    ]));
 
     (new ServiceProvider($app))->register();
-})->throws(
-    ApiKeyIsMissing::class,
-    'The OpenAI API Key is missing. Please publish the [openai.php] configuration file and set the [api_key].',
-);
+
+    $twMerge = $app->get(TailwindMerge::class);
+
+    expect($twMerge->merge('tw-h-4 tw-h-6'))->toBe('tw-h-6');
+});
 
 it('provides', function () {
     $app = app();
@@ -53,8 +55,8 @@ it('provides', function () {
     $provides = (new ServiceProvider($app))->provides();
 
     expect($provides)->toBe([
-        Client::class,
-        ClientContract::class,
-        'openai',
+        TailwindMerge::class,
+        TailwindMergeContract::class,
+        'tailwind-merge',
     ]);
 });

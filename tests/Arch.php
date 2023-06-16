@@ -1,28 +1,22 @@
 <?php
 
-test('exceptions')
-    ->expect('OpenAI\Laravel\Exceptions')
-    ->toUseNothing();
-
 test('facades')
-    ->expect('OpenAI\Laravel\Facades\OpenAI')
+    ->expect('TailwindMerge\Laravel\Facades\TailwindMerge')
     ->toOnlyUse([
         'Illuminate\Support\Facades\Facade',
-        'OpenAI\Contracts\ResponseContract',
-        'OpenAI\Laravel\Testing\OpenAIFake',
-        'OpenAI\Responses\StreamResponse',
     ]);
 
 test('service providers')
-    ->expect('OpenAI\Laravel\ServiceProvider')
+    ->expect('TailwindMerge\Laravel\ServiceProvider')
     ->toOnlyUse([
-        'GuzzleHttp\Client',
-        'Illuminate\Support\ServiceProvider',
-        'OpenAI\Laravel',
-        'OpenAI',
         'Illuminate\Contracts\Support\DeferrableProvider',
+        'Illuminate\Support\ServiceProvider',
+        'Illuminate\View\Compilers\BladeCompiler',
+        'Illuminate\View\ComponentAttributeBag',
+        'TailwindMerge',
 
         // helpers...
         'config',
         'config_path',
+        'resolve',
     ]);

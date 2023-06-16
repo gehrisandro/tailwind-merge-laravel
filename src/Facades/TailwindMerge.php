@@ -7,9 +7,9 @@ namespace TailwindMerge\Laravel\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static string merge(string|array $classes)
+ * @method static string merge(...$args)
  */
-final class TailwindMerge extends Facade
+class TailwindMerge extends Facade
 {
     /**
      * Get the registered name of the component.

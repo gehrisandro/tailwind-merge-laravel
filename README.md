@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/gehrisandro/tailwind-merge-laravel/main/art/example.png" width="600" alt="Tailwind Merge for Laravel">
+    <img src="https://raw.githubusercontent.com/gehrisandro/tailwind-merge-laravel/main/art/example.png" width="600" alt="TailwindMerge for Laravel">
     <p align="center">
         <a href="https://github.com/gehrisandro/tailwind-merge-laravel/actions"><img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/gehrisandro/tailwind-merge-laravel/tests.yml?branch=main&label=tests&style=round-square"></a>
         <a href="https://packagist.org/packages/gehrisandro/tailwind-merge-laravel"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/gehrisandro/tailwind-merge-laravel"></a>
@@ -10,8 +10,9 @@
 
 ------
 
-**Tailwind CSS Merge for Laravel** is a Laravel package that allows you to merge multiple Tailwind CSS classes by automatically resolving conflicts between classes by removing classes conflicting with a class defined later. This is especially helpful when you want to override Tailwind CSS classes in your Blade components. \
-Essentially, a Laravel port of [tailwind-merge](https://github.com/dcastil/tailwind-merge) by [dcastil](https://github.com/dcastil).
+**TailwindMerge for Laravel** allows you to merge multiple [Tailwind CSS](https://tailwindcss.com/) classes and automatically resolves conflicts between classes by removing classes conflicting with a class defined later. This is especially helpful when you want to override Tailwind CSS classes in your Blade components.
+
+A Laravel / PHP port of [tailwind-merge](https://github.com/dcastil/tailwind-merge) by [dcastil](https://github.com/dcastil).
 
 Supports Tailwind v3.0 up to v3.3.
 
@@ -19,6 +20,8 @@ If you find this package helpful, please consider sponsoring the maintainer:
 - Sandro Gehri: **[github.com/sponsors/gehrisandro](https://github.com/sponsors/gehrisandro)**
 
 > **Attention:** This package is still in early development.
+
+> If you are **NOT** using Laravel, you can use the [TailwindMerge for PHP](https://github.com/gehrisandro/tailwind-merge-php) directly.
 
 ## Table of Contents
 - [Get Started](#get-started)
@@ -31,7 +34,7 @@ If you find this package helpful, please consider sponsoring the maintainer:
 - [Contributing](#contributing)
 
 ## Get Started
-> **Requires [Laravel 10](https://github.com/laravel/laravel)**
+> **Requires [Laravel 9+](https://github.com/laravel/laravel) and [PHP 8.1+](https://php.net/releases/)**
 
 First, install `TailwindMerge for Laravel` via the [Composer](https://getcomposer.org/) package manager:
 
@@ -46,17 +49,17 @@ php artisan vendor:publish --provider="TailwindMerge\Laravel\ServiceProvider"
 ```
 
 This will create a `config/tailwind-merge.php` configuration file in your project, which you can modify to your needs
-using environment variables. For more information, see the [Configuration](#configuration) section.
+using environment variables. For more information, see the [Configuration](#configuration) section:
 
 ```env
 TAILWIND_MERGE_PREFIX=tw-
 ```
 
-Finally, you may use `TailwindMerge` in your Blade components:
+Finally, you may use `TailwindMerge` in various places like your Blade components:
 
 ```php
 // circle.blade.php
-<div {{ $attributes->mergeClasses('w-10 h-10 rounded-full bg-red-500') }}></div>
+<div {{ $attributes->twMerge('w-10 h-10 rounded-full bg-red-500') }}></div>
 
 // your-view.blade.php
 <x-circle class="bg-blue-500" />
@@ -165,31 +168,38 @@ return [
 ```
 
 ### Everywhere else in Laravel
-If you don't use Laravel Blade, you can still use `TailwindMerge` by using the `merge` method directly:
+If you don't use Laravel Blade, you can still use `TailwindMerge` by using the Facade or the helper method directly:
 
+#### Facade
 ```php
 use TailwindMerge\Laravel\Facades\TailwindMerge;
 
 TailwindMerge::merge('w-10 h-10 rounded-full bg-red-500 bg-blue-500'); // w-10 h-10 rounded-full bg-blue-500
 ```
 
-For more examples, take a look at the [gehrisandro/tailwind-merge-php](https://github.com/gehrisandro/tailwind-merge-php) repository.
+#### Helper Method
+```php
+twMerge('w-10 h-10 rounded-full bg-red-500 bg-blue-500'); // w-10 h-10 rounded-full bg-blue-500
+```
+
+### More usage examples
+Take a look at the [TailwindMerge for PHP](https://github.com/gehrisandro/tailwind-merge-php) repository.
 
 ## Configuration
 
-> **Note:** To be documented
+> **Note:** To do
 
 ### Custom Tailwind Config
 
-> **Note:** To be documented
+> **Note:** To do
 
 ## Contributing
 
-Thank you for considering contributing to `Tailwind Merge for PHP`! The contribution guide can be found in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+Thank you for considering contributing to `TailwindMerge for Laravel`! The contribution guide can be found in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 
 ---
 
-`Tailwind Merge for PHP` is an open-sourced software licensed under the **[MIT license](https://opensource.org/licenses/MIT)**.
+`TailwindMerge for PHP` is an open-sourced software licensed under the **[MIT license](https://opensource.org/licenses/MIT)**.
 
 
