@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TailwindMerge\Laravel;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
@@ -14,7 +13,7 @@ use TailwindMerge\TailwindMerge;
 /**
  * @internal
  */
-class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
+class ServiceProvider extends BaseServiceProvider
 {
     public function register(): void
     {
