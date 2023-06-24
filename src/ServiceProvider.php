@@ -34,7 +34,7 @@ class ServiceProvider extends BaseServiceProvider
         }
 
         $this->registerBladeDirectives();
-        $this->registerAttributesBagMarco();
+        $this->registerAttributesBagMacro();
     }
 
     protected function registerBladeDirectives(): void
@@ -50,7 +50,7 @@ class ServiceProvider extends BaseServiceProvider
         });
     }
 
-    protected function registerAttributesBagMarco(): void
+    protected function registerAttributesBagMacro(): void
     {
         ComponentAttributeBag::macro('twMerge', function (...$args): static {
             $this->attributes['class'] = resolve(TailwindMergeContract::class)->merge($args, ($this->attributes['class'] ?? ''));
