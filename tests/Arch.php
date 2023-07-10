@@ -10,6 +10,7 @@ test('service providers')
     ->expect('TailwindMerge\Laravel\ServiceProvider')
     ->toOnlyUse([
         'Illuminate\Contracts\Support\DeferrableProvider',
+        'Illuminate\Support\Arr',
         'Illuminate\Support\ServiceProvider',
         'Illuminate\View\Compilers\BladeCompiler',
         'Illuminate\View\ComponentAttributeBag',

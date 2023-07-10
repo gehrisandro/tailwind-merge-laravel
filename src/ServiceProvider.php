@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TailwindMerge\Laravel;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
@@ -46,14 +47,14 @@ class ServiceProvider extends BaseServiceProvider
                 return;
             }
 
-            $bladeCompiler->directive($name, fn (?string $expression) => "<?php echo twMerge($expression); ?>");
+            $bladeCompiler->directive($name, fn (?string $expression) => "<?php echo twMerge(\Illuminate\Support\Arr::map([$expression], fn (\$arg) => \Illuminate\Support\Arr::toCssClasses(\$arg))); ?>");
         });
     }
 
     protected function registerAttributesBagMacro(): void
     {
         ComponentAttributeBag::macro('twMerge', function (...$args): static {
-            $this->attributes['class'] = resolve(TailwindMergeContract::class)->merge($args, ($this->attributes['class'] ?? ''));
+            $this->attributes['class'] = resolve(TailwindMergeContract::class)->merge(Arr::map($args, fn ($arg) => Arr::toCssClasses($arg)), ($this->attributes['class'] ?? ''));
 
             return $this;
         });
