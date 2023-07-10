@@ -16,7 +16,7 @@ class Square extends Component
         return <<<"blade"
             <div {{ \$attributes->twMerge([
                 'w-10 h-10 bg-red-500',
-                'rounded' => '{$this->rounded}',
+                'rounded-lg' => '{$this->rounded}',
             ]) }}></div>
         blade;
     }

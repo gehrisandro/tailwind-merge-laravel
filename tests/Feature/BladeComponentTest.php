@@ -19,12 +19,12 @@ test('blade attribute macro supports conditional classes', function () {
         ->assertSee('<div class="w-10 h-10 bg-blue-500"></div>', false);
 
     $this->blade('<x-square class="bg-blue-500" rounded />')
-        ->assertSee('<div class="w-10 h-10 rounded bg-blue-500"></div>', false);
+        ->assertSee('<div class="w-10 h-10 rounded-lg bg-blue-500"></div>', false);
 });
 
 test('blade attribute macro supports multiple arguments', function () {
     Blade::component('rectangle', Rectangle::class);
 
     $this->blade('<x-rectangle />')
-        ->assertSee('<div class="h-6 rounded border pl-4"></div>', false);
+        ->assertSee('<div class="h-6 rounded-lg border pl-4"></div>', false);
 });

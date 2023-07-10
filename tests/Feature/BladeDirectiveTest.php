@@ -10,20 +10,20 @@ it('provides a blade directive to merge tailwind classes', function () {
 test('blade directive supports conditional classes', function () {
     $this->blade('<div class="@twMerge([
         "h-4 h-6",
-        "rounded" => false,
+        "rounded-lg" => false,
     ])"></div>')
         ->assertSee('class="h-6"', false);
 
     $this->blade('<div class="@twMerge([
         "h-4 h-6",
-        "rounded" => true,
+        "rounded-lg" => true,
     ])"></div>')
-        ->assertSee('class="h-6 rounded"', false);
+        ->assertSee('class="h-6 rounded-lg"', false);
 });
 
 test('blade directive supports multiple arguments', function () {
-    $this->blade('<div class="@twMerge("h-4 h-6", "rounded border", ["pl-4", "rounded-full" => false])"></div>')
-        ->assertSee('class="h-6 rounded border pl-4"', false);
+    $this->blade('<div class="@twMerge("h-4 h-6", "rounded-lg border", ["pl-4", "rounded-full" => false])"></div>')
+        ->assertSee('class="h-6 rounded-lg border pl-4"', false);
 });
 
 test('name ot the blade directive is configurable', function () {
