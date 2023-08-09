@@ -18,7 +18,7 @@
     "require-dev": {
         "laravel/pint": "^1.10.2",
         "orchestra/testbench": "^v8.0.8",
-        "pestphp/pest": "dev-develop as 2.6.2",
+        "pestphp/pest": "^v2.12.2",
         "pestphp/pest-plugin-arch": "^2.1.2",
         "pestphp/pest-plugin-mock": "^2.0.0",
         "pestphp/pest-plugin-type-coverage": "^2.0.0",
