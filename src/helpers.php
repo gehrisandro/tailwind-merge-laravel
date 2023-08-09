@@ -1,6 +1,8 @@
 <?php
 
-if (! function_exists('twMerge')) {
+declare(strict_types=1);
+
+if (!function_exists('twMerge')) {
     /**
      * @param  array<array-key, string|array<array-key, string>>  ...$args
      */

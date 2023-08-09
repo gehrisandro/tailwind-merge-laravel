@@ -1,0 +1,3 @@
+<button type="button" class="p-4 bg-red-500">
+        <svg class="h-5 w-5 text-blue-500"></svg>
+    </button>

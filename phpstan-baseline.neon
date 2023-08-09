@@ -1,12 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property TailwindMerge\\\\Laravel\\\\TailwindMergeServiceProvider\\:\\:\\$attributes\\.$#"
-			count: 1
-			path: src/TailwindMergeServiceProvider.php
-
-		-
-			message: "#^Cannot call method merge\\(\\) on mixed\\.$#"
+			message: "#^Call to an undefined method Illuminate\\\\View\\\\ComponentAttributeBag\\:\\:twMergeFor\\(\\)\\.$#"
 			count: 1
 			path: src/TailwindMergeServiceProvider.php
 

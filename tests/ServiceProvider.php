@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Config\Repository;
 use TailwindMerge\Contracts\TailwindMergeContract;
 use TailwindMerge\Laravel\TailwindMergeServiceProvider;

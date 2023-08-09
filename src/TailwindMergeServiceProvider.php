@@ -26,12 +26,12 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/tailwind-merge.php' => config_path('tailwind-merge.php'),
+                __DIR__ . '/../config/tailwind-merge.php' => config_path('tailwind-merge.php'),
             ]);
         }
 
         $this->registerBladeDirectives();
-        $this->registerAttributesBagMacro();
+        $this->registerAttributesBagMacros();
     }
 
     protected function registerBladeDirectives(): void
@@ -47,12 +47,32 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
         });
     }
 
-    protected function registerAttributesBagMacro(): void
+    protected function registerAttributesBagMacros(): void
     {
-        ComponentAttributeBag::macro('twMerge', function (...$args): static {
-            $this->attributes['class'] = resolve(TailwindMergeContract::class)->merge($args, ($this->attributes['class'] ?? ''));
+        ComponentAttributeBag::macro('twMerge', function (...$args): ComponentAttributeBag {
+            /** @var ComponentAttributeBag $this */
+            return $this->twMergeFor('', ...$args);
+        });
 
-            return $this;
+        ComponentAttributeBag::macro('twMergeFor', function (string $for, ...$args): ComponentAttributeBag {
+            /** @var ComponentAttributeBag $this */
+
+            /** @var TailwindMergeContract $instance */
+            $instance = resolve(TailwindMergeContract::class);
+
+            $attribute = 'class' . ($for !== '' ? ':' . $for : '');
+
+            /** @var string $classes */
+            $classes = $this->get($attribute, '');
+
+            $this->offsetSet('class', $instance->merge($args, $classes));
+
+            return $this->only('class');
+        });
+
+        ComponentAttributeBag::macro('withoutTwMergeClasses', function (): ComponentAttributeBag {
+            /** @var ComponentAttributeBag $this */
+            return $this->whereDoesntStartWith('class:');
         });
     }
 

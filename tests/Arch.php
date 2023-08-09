@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 test('facades')
     ->expect('TailwindMerge\Laravel\Facades\TailwindMerge')
     ->toOnlyUse([

@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "@PSR12": true,
+    "concat_space": {
+      "spacing": "one"
+    },
+    "class_attributes_separation": false,
+    "not_operator_with_successor_space": false,
+    "phpdoc_separation": false,
+    "declare_strict_types": true
+  }
+}

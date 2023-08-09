@@ -8,7 +8,13 @@ use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
-        __DIR__.'/src',
+        __DIR__ . '/src',
+    ]);
+
+    $rectorConfig->skip([
+        \Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector::class => [
+            __DIR__ . '/src/TailwindMergeServiceProvider.php',
+        ],
     ]);
 
     $rectorConfig->sets([

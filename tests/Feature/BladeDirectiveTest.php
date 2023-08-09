@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Config;
 
 it('provides a blade directive to merge tailwind classes', function () {
