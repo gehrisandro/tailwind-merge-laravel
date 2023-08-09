@@ -2,7 +2,7 @@
 
 use Illuminate\Config\Repository;
 use TailwindMerge\Laravel\Facades\TailwindMerge;
-use TailwindMerge\Laravel\ServiceProvider;
+use TailwindMerge\Laravel\TailwindMergeServiceProvider;
 
 it('resolves resources', function () {
     $app = app();
@@ -12,7 +12,7 @@ it('resolves resources', function () {
         ],
     ]));
 
-    (new ServiceProvider($app))->register();
+    (new TailwindMergeServiceProvider($app))->register();
 
     TailwindMerge::setFacadeApplication($app);
 

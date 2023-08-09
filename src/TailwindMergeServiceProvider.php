@@ -10,7 +10,7 @@ use Illuminate\View\ComponentAttributeBag;
 use TailwindMerge\Contracts\TailwindMergeContract;
 use TailwindMerge\TailwindMerge;
 
-class ServiceProvider extends BaseServiceProvider
+class TailwindMergeServiceProvider extends BaseServiceProvider
 {
     public function register(): void
     {

@@ -7,7 +7,7 @@ test('facades')
     ]);
 
 test('service providers')
-    ->expect('TailwindMerge\Laravel\ServiceProvider')
+    ->expect('TailwindMerge\Laravel\TailwindMergeServiceProvider')
     ->toOnlyUse([
         'Illuminate\Contracts\Support\DeferrableProvider',
         'Illuminate\Support\ServiceProvider',

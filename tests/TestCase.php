@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use TailwindMerge\Laravel\ServiceProvider;
+use TailwindMerge\Laravel\TailwindMergeServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -12,7 +12,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            ServiceProvider::class,
+            TailwindMergeServiceProvider::class,
         ];
     }
 }

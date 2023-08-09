@@ -2,7 +2,7 @@
 
 use Illuminate\Config\Repository;
 use TailwindMerge\Contracts\TailwindMergeContract;
-use TailwindMerge\Laravel\ServiceProvider;
+use TailwindMerge\Laravel\TailwindMergeServiceProvider;
 use TailwindMerge\TailwindMerge;
 
 it('binds the tailwind merge on the container', function () {
@@ -13,7 +13,7 @@ it('binds the tailwind merge on the container', function () {
         ],
     ]));
 
-    (new ServiceProvider($app))->register();
+    (new TailwindMergeServiceProvider($app))->register();
 
     expect($app->get(TailwindMerge::class))->toBeInstanceOf(TailwindMerge::class);
 });
@@ -26,7 +26,7 @@ it('binds the client on the container as singleton', function () {
         ],
     ]));
 
-    (new ServiceProvider($app))->register();
+    (new TailwindMergeServiceProvider($app))->register();
 
     $twMerge = $app->get(TailwindMerge::class);
 
@@ -42,7 +42,7 @@ it('uses the prefix from the configuration', function () {
         ],
     ]));
 
-    (new ServiceProvider($app))->register();
+    (new TailwindMergeServiceProvider($app))->register();
 
     $twMerge = $app->get(TailwindMerge::class);
 
@@ -52,7 +52,7 @@ it('uses the prefix from the configuration', function () {
 it('provides', function () {
     $app = app();
 
-    $provides = (new ServiceProvider($app))->provides();
+    $provides = (new TailwindMergeServiceProvider($app))->provides();
 
     expect($provides)->toBe([
         TailwindMerge::class,

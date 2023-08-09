@@ -51,7 +51,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "TailwindMerge\\Laravel\\ServiceProvider"
+                "TailwindMergeServiceProvider"
             ]
         }
     },
