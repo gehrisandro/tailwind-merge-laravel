@@ -1,7 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined method Illuminate\\\\View\\\\ComponentAttributeBag\\:\\:twMergeFor\\(\\)\\.$#"
+			message: "#^Cannot call method merge\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/TailwindMergeServiceProvider.php
 

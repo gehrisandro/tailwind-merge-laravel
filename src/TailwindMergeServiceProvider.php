@@ -51,7 +51,9 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
     {
         ComponentAttributeBag::macro('twMerge', function (...$args): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
-            return $this->twMergeFor('', ...$args);
+            $this->offsetSet('class', resolve(TailwindMergeContract::class)->merge($args, ($this->get('class', ''))));
+
+            return $this;
         });
 
         ComponentAttributeBag::macro('twMergeFor', function (string $for, ...$args): ComponentAttributeBag {
