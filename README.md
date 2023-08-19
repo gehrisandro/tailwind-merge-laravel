@@ -45,7 +45,7 @@ composer require gehrisandro/tailwind-merge-laravel
 Next, publish the configuration file:
 
 ```bash
-php artisan vendor:publish --provider="TailwindMerge\Laravel\ServiceProvider"
+php artisan vendor:publish --provider="TailwindMerge\Laravel\TailwindMergeServiceProvider"
 ```
 
 This will create a `config/tailwind-merge.php` configuration file in your project, which you can modify to your needs
