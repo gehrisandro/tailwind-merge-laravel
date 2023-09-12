@@ -18,6 +18,7 @@ test('service providers')
         'TailwindMerge',
 
         // helpers...
+        'app',
         'config',
         'config_path',
         'resolve',

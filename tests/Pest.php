@@ -7,4 +7,4 @@ uses(
     \Illuminate\Foundation\Testing\Concerns\InteractsWithViews::class,
     \Tests\TestCase::class,
 )
-    ->in('Feature');
+    ->in(__DIR__);

@@ -16,6 +16,7 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
     {
         $this->app->singleton(TailwindMergeContract::class, static fn (): TailwindMerge => TailwindMerge::factory()
             ->withConfiguration(config('tailwind-merge', []))
+            ->withCache(app('cache')->store()) // @phpstan-ignore-line
             ->make());
 
         $this->app->alias(TailwindMergeContract::class, 'tailwind-merge');
