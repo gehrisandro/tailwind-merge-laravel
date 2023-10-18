@@ -129,7 +129,7 @@ Now you can use your Blade components and pass additional classes to merge:
 <x-circle class="bg-blue-500" />
 ```
 
-This will now render the following HTML:
+This will render the following HTML:
 
 ```html
 <div class="w-10 h-10 rounded-full bg-blue-500"></div>
@@ -142,7 +142,7 @@ By default Laravel allows you to only merge classes in one place. But with `Tail
 
 ```blade
 // button.blade.php
-<button {{ $attributes->twMerge('p-2 bg-gray-900 text-white') }}>
+<button {{ $attributes->withoutTwMergeClasses()->twMerge('p-2 bg-gray-900 text-white') }}>
     <svg {{ $attributes->twMergeFor('icon', 'h-4 text-gray-500') }} viewBox="0 0 448 512"><path d="..."/></svg>
     
     {{ $slot }}
@@ -157,6 +157,18 @@ You can now specify additional classes for the button and the svg icon:
   Click Me
 </x-button>
 ```
+
+This will render the following HTML:
+
+```html
+<button class="p-2 blue text-white">
+  <svg class="h-4 text-blue-500" viewBox="0 0 448 512"><path d="..."/></svg>
+
+  Click Me
+</button>
+```
+
+> Note: Use `withoutTwMergeClasses()` on your main attributes bag, otherwise all `class:xyz` attributes will be rendered in the output.
 
 ### Use Laravel Blade Directive
 The package registers a Blade directive which can be used to merge classes in your Blade views:
