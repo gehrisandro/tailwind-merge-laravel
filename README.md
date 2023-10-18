@@ -19,8 +19,6 @@ Supports Tailwind v3.0 up to v3.3.
 If you find this package helpful, please consider sponsoring the maintainer:
 - Sandro Gehri: **[github.com/sponsors/gehrisandro](https://github.com/sponsors/gehrisandro)**
 
-> **Attention:** This package is still in early development.
-
 > If you are **NOT** using Laravel, you can use the [TailwindMerge for PHP](https://github.com/gehrisandro/tailwind-merge-php) directly.
 
 ## Table of Contents
@@ -187,11 +185,47 @@ Take a look at the [TailwindMerge for PHP](https://github.com/gehrisandro/tailwi
 
 ## Configuration
 
-> **Note:** To do
+If you are using Tailwind CSS without any extra config, you can use TailwindMerge right away. And stop reading here.
 
-### Custom Tailwind Config
+If you're using a custom Tailwind config, you may need to configure TailwindMerge as well to merge classes properly.
 
-> **Note:** To do
+By default TailwindMerge is configured in a way that you can still use it if all the following apply to your Tailwind config:
+
+- Only using color names which don't clash with other Tailwind class names
+- Only deviating by number values from number-based Tailwind classes
+- Only using font-family classes which don't clash with default font-weight classes
+- Sticking to default Tailwind config for everything else
+
+If some of these points don't apply to you, you need to customize the configuration.
+
+### Configure Prefix
+
+You can configure the prefix directly in the `config/tailwind-merge.php` configuration file or by setting the environment variable:
+
+```env
+TAILWIND_MERGE_PREFIX=tw-
+```
+
+### Modify merge process
+
+If TailwindMerge is not able to merge your changes properly you can modify the merge process by modifying existing class groups or adding new class groups.
+
+For example, if you want to add a custom font size of "very-large":
+
+```php
+// config/tailwind-merge.php
+
+return [
+  'classGroups' => [
+      'font-size' => [
+          ['text' => ['very-large']]
+      ],
+  ],
+];
+```
+
+
+For a more detailed explanation of the configuration options, visit the [original package documentation](https://github.com/dcastil/tailwind-merge/blob/v1.14.0/docs/configuration.md).
 
 ## Contributing
 

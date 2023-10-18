@@ -51,6 +51,26 @@ it('uses the prefix from the configuration', function () {
     expect($twMerge->merge('tw-h-4 tw-h-6'))->toBe('tw-h-6');
 });
 
+it('uses the class groups from the configuration', function () {
+    $app = app();
+
+    $app->bind('config', fn () => new Repository([
+        'tailwind-merge' => [
+            'classGroups' => [
+                'font-size' => [
+                    ['text' => ['very-large']],
+                ],
+            ],
+        ],
+    ]));
+
+    (new TailwindMergeServiceProvider($app))->register();
+
+    $twMerge = $app->get(TailwindMerge::class);
+
+    expect($twMerge->merge('text-xl text-very-large'))->toBe('text-very-large');
+});
+
 it('provides', function () {
     $app = app();
 
