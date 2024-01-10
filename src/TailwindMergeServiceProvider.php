@@ -44,7 +44,7 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
                 return;
             }
 
-            $bladeCompiler->directive($name, fn (?string $expression) => "<?php echo twMerge($expression); ?>");
+            $bladeCompiler->directive($name, fn (?string $expression): string => "<?php echo twMerge($expression); ?>");
         });
     }
 
