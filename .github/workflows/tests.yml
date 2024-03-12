@@ -10,8 +10,16 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.1, 8.2, 8.3]
-        laravel: [10.*]
+        laravel: [10.*, 11.*]
         dependency-version: [prefer-lowest, prefer-stable]
+        include:
+          - laravel: 10.*
+            testbench: ^8.20
+          - lararavel: 11.*
+            testbench: ^9.0
+        exclude:
+          - php: 8.1
+            laravel: 11.*
 
     name: Tests P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
     steps:
