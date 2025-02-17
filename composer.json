@@ -1,7 +1,13 @@
 {
     "name": "gehrisandro/tailwind-merge-laravel",
     "description": "TailwindMerge for Laravel merges multiple Tailwind CSS classes by automatically resolving conflicts between them",
-    "keywords": ["laravel", "php", "tailwindcss", "merge", "classes"],
+    "keywords": [
+        "laravel",
+        "php",
+        "tailwindcss",
+        "merge",
+        "classes"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -12,18 +18,18 @@
     "require": {
         "php": "^8.1.0",
         "guzzlehttp/guzzle": "^7.5.1",
-        "laravel/framework": "^10.9.0|^11.0",
+        "laravel/framework": "^10.9.0|^11.0|^12.0",
         "gehrisandro/tailwind-merge-php": "^v1.1.0"
     },
     "require-dev": {
         "laravel/pint": "^1.13.8",
-        "orchestra/testbench": "^8.0|^9.0",
-        "pestphp/pest": "^v2.30.0",
-        "pestphp/pest-plugin-arch": "^2.6",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "pestphp/pest": "^v2.30.0|^3.7",
+        "pestphp/pest-plugin-arch": "^2.6|^3.0",
         "pestphp/pest-plugin-mock": "^2.0.0",
-        "pestphp/pest-plugin-type-coverage": "^2.8",
-        "phpstan/phpstan": "^1.10.55",
-        "rector/rector": "^0.19",
+        "pestphp/pest-plugin-type-coverage": "^2.8|^3.3",
+        "phpstan/phpstan": "^1.10.55|^2.1",
+        "rector/rector": "^0.19|^2.0",
         "symfony/var-dumper": "^6.4.2|^7.0"
     },
     "autoload": {
