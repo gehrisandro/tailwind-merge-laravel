@@ -5,6 +5,17 @@ declare(strict_types=1);
 return [
     /*
     |--------------------------------------------------------------------------
+    | Cache Store
+    |--------------------------------------------------------------------------
+    |
+    | Tailwind Merge uses Laravel's cache system to store the merged classes.
+    | Here you can customize the cache store that Tailwind Merge uses.
+    */
+
+    'cache_store' => env('TAILWIND_MERGE_CACHE_STORE'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Prefix
     |--------------------------------------------------------------------------
     |
