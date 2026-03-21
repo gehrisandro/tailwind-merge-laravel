@@ -33,6 +33,8 @@ jobs:
             laravel: 13.*
           - php: 8.2
             laravel: 13.*
+          - php: 8.5
+            laravel: 10.*
 
 
     name: Tests P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
