@@ -80,7 +80,7 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * @return array<class-string<\TailwindMerge\Contracts\TailwindMergeContract>>|string[]
+     * @return array<class-string<TailwindMergeContract>>|string[]
      */
     public function provides(): array
     {
