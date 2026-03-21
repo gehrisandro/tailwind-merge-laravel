@@ -42,4 +42,22 @@ return [
     */
 
     'blade_directive' => 'twMerge',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache
+    |--------------------------------------------------------------------------
+    |
+    | Configure caching for Tailwind Merge. Enabling cache will store processed
+    | class lists using your chosen cache store, which may reduce processing
+    | time in some environments. However, in high-traffic or development environments,
+    | disabling cache can actually reduce the number of Cache server or database calls
+    | and improve performance. Adjust these settings based on your application's needs
+    | and infrastructure.
+    */
+
+    'cache' => [
+        'enabled' => env('TAILWIND_MERGE_CACHE_ENABLED', true),
+        'store' => env('TAILWIND_MERGE_CACHE_STORE'), // use Laravel's default
+    ],
 ];

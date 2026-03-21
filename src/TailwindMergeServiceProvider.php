@@ -14,10 +14,17 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(TailwindMergeContract::class, static fn (): TailwindMerge => TailwindMerge::factory()
-            ->withConfiguration(config('tailwind-merge', []))
-            ->withCache(app('cache')->store()) // @phpstan-ignore-line
-            ->make());
+        $singletonClosure = static function (): TailwindMerge {
+            $twm = TailwindMerge::factory()->withConfiguration(config('tailwind-merge', []));
+
+            if (config('tailwind-merge.cache.enabled')) {
+                $twm->withCache(app('cache')->store(config('tailwind-merge.cache.store'))); // @phpstan-ignore-line
+            }
+
+            return $twm->make();
+        };
+
+        $this->app->singleton(TailwindMergeContract::class, $singletonClosure);
 
         $this->app->alias(TailwindMergeContract::class, 'tailwind-merge');
         $this->app->alias(TailwindMergeContract::class, TailwindMerge::class);
