@@ -12,8 +12,8 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        php: [8.1, 8.2, 8.3, 8.4]
-        laravel: ['10.*', '11.*', '12.*']
+        php: [8.1, 8.2, 8.3, 8.4, 8.5]
+        laravel: ['10.*', '11.*', '12.*', '13.*']
         dependency-version: [prefer-lowest, prefer-stable]
         include:
           - laravel: 10.*
@@ -22,11 +22,17 @@ jobs:
             testbench: ^9.0
           - laravel: 12.*
             testbench: ^10.0
+          - laravel: 13.*
+            testbench: ^11.0
         exclude:
           - php: 8.1
             laravel: 11.*
           - php: 8.1
             laravel: 12.*
+          - php: 8.1
+            laravel: 13.*
+          - php: 8.2
+            laravel: 13.*
 
 
     name: Tests P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
@@ -36,7 +42,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Cache dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache/files
           key: dependencies-php-${{ matrix.php }}-L${{ matrix.laravel }}-${{ matrix.dependency-version }}-composer-${{ hashFiles('composer.json') }}
