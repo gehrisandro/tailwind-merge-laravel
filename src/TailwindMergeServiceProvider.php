@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TailwindMerge\Laravel;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
@@ -50,14 +51,14 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
 
     protected function registerAttributesBagMacros(): void
     {
-        ComponentAttributeBag::macro('twMerge', function (...$args): ComponentAttributeBag {
+        ComponentAttributeBag::macro('twMerge', function (string|array ...$args): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
-            $this->offsetSet('class', resolve(TailwindMergeContract::class)->merge($args, ($this->get('class', ''))));
+            $this->offsetSet('class', resolve(TailwindMergeContract::class)->merge(Collection::make($args)->flatten()->implode(' '), ($this->get('class', ''))));
 
             return $this;
         });
 
-        ComponentAttributeBag::macro('twMergeFor', function (string $for, ...$args): ComponentAttributeBag {
+        ComponentAttributeBag::macro('twMergeFor', function (string $for, string|array ...$args): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
 
             /** @var TailwindMergeContract $instance */
@@ -68,7 +69,7 @@ class TailwindMergeServiceProvider extends BaseServiceProvider
             /** @var string $classes */
             $classes = $this->get($attribute, '');
 
-            $this->offsetSet('class', $instance->merge($args, $classes));
+            $this->offsetSet('class', $instance->merge(Collection::make($args)->flatten()->implode(' '), $classes));
 
             return $this->only('class');
         });

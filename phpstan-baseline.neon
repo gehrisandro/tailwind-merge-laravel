@@ -13,12 +13,6 @@ parameters:
 			path: src/TailwindMergeServiceProvider.php
 
 		-
-			message: '#^Parameter \#1 \.\.\.\$args of method TailwindMerge\\Contracts\\TailwindMergeContract\:\:merge\(\) expects array\<array\<string\>\|string\>\|string, array\<int\|string, mixed\> given\.$#'
-			identifier: argument.type
-			count: 2
-			path: src/TailwindMergeServiceProvider.php
-
-		-
 			message: '#^Parameter \#2 \.\.\.\$args of method TailwindMerge\\Contracts\\TailwindMergeContract\:\:merge\(\) expects array\<array\<string\>\|string\>\|string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
